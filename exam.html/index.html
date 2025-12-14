@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Module Challenge</title>
+
+  <!-- Roboto font -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Remove scroll */
+    html, body {
+      margin: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: Roboto, sans-serif;
+      background: white;
+    }
+
+    /* Page wrapper */
+    .page {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Adjust image-box to ensure button visibility */
+    .image-box {
+      flex: none; /* Remove flex-grow */
+      height: calc(100vh - 60px); /* Deduct button-box height */
+      width: 100%;
+    }
+
+    .image-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;     /* image fits without scroll */
+      display: block;
+    }
+
+    /* Overlay common */
+    .overlay {
+      position: absolute;
+      top: 50%;
+      background: black;
+      color: white;
+      transform: translateY(-50%);
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    /* Design 1: small box */
+    .small {
+      left: 60px;
+      padding: 14px 20px;
+      width: 320px;
+      text-align: left;
+    }
+
+    /* Design 2: text-width only */
+    .text-only {
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 14px 22px;
+      white-space: nowrap;
+      text-align: center;
+    }
+
+    /* Button section */
+    .button-box {
+      text-align: center;
+      padding: 12px 0;
+    }
+
+    button {
+      padding: 12px 30px;
+      background: black;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    /* Mobile title */
+    .mobile-title {
+      display: none;
+      padding: 16px;
+      font-size: 22px;
+      color: #333;
+    }
+
+    /* MOBILE VIEW */
+    @media (max-width: 600px) {
+      html, body {
+        overflow: auto;   /* allow scroll on mobile */
+      }
+
+      .page {
+        height: auto;
+      }
+
+      .overlay {
+        display: none;
+      }
+
+      .mobile-title {
+        display: block;
+        font-size: 26px; /* Increase font size */
+      }
+
+      .image-box {
+        height: auto;
+      }
+
+      .image-box img {
+        height: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page">
+
+    <!-- Mobile title -->
+    <div class="mobile-title">
+      Kings college Final module challenge
+    </div>
+
+    <!-- Image -->
+    <div class="image-box">
+      <img id="img" src="exam.png">
+
+      <div id="overlay" class="overlay small">
+        KING’S COLLEGE FINAL EXAM<br>
+        MODULE CHALLENGE
+      </div>
+    </div>
+
+    <!-- Button -->
+    <div class="button-box">
+      <button onclick="switchDesign()">Switch Design</button>
+    </div>
+
+  </div>
+
+  <script>
+    var firstDesign = true;
+
+    function switchDesign() {
+      var img = document.getElementById("img");
+      var overlay = document.getElementById("overlay");
+
+      if (firstDesign) {
+        img.src = "exam2.png";
+        overlay.className = "overlay text-only";
+        overlay.innerHTML = "KING’S COLLEGE FINAL EXAM MODULE CHALLENGE";
+      } else {
+        img.src = "exam.png";
+        overlay.className = "overlay small";
+        overlay.innerHTML = "KING’S COLLEGE FINAL EXAM<br>MODULE CHALLENGE";
+      }
+
+      firstDesign = !firstDesign;
+    }
+  </script>
+
+</body>
+</html>
